@@ -1,0 +1,8 @@
+[
+  { "region": "North India", "cities": ["Delhi", "Jaipur", "Agra"] },
+  { "region": "South India", "cities": ["Chennai", "Bengaluru", "Hyderabad"] },
+  { "region": "North India", "cities": ["Delhi", "Jaipur", "Agra"] },
+  { "region": "South India", "cities": ["Chennai", "Bengaluru", "Hyderabad"] },
+  { "region": "East India", "cities": ["Kolkata", "Bhubaneswar", "Guwahati"] },
+  { "region": "West India", "cities": ["Mumbai", "Pune", "Ahmedabad"] }
+]

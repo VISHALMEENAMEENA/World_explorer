@@ -1,0 +1,212 @@
+:root {
+  /* Colors and theme variables */
+  --bg-gradient: linear-gradient(115deg, #171925 0%, #223a60 60%, #243a54 100%);
+  --card-bg: rgba(27, 33, 54, 0.85);
+  --card-border: #22d9ff;
+  --card-shadow: 0 8px 32px rgba(25, 60, 142, 0.25);
+  --primary-color: #f0f8ff;
+  --accent-color: #ffd362;
+  --button-bg: rgba(34, 217, 255, 0.1);
+  --button-hover-bg: rgba(34, 217, 255, 0.3);
+  --font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --transition-speed: 0.25s;
+}
+
+/* Root container with padding for embedding flexibility */
+.india-root {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3rem; /* reduced top padding for embedding ease */
+  color: var(--primary-color);
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; /* added for better box sizing */
+}
+
+/* Header */
+.india-header h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  text-shadow: 0 0 10px #ffdb70a8;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  color: var(--accent-color);
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+/* Region List Styles */
+.region-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8rem;
+  max-width: 760px;
+  margin-bottom: 3rem;
+  padding: 0 0.5rem; /* added horizontal padding for responsiveness */
+  box-sizing: border-box;
+}
+
+.region-button {
+  background: var(--button-bg);
+  border: 2.8px solid var(--card-border);
+  color: var(--primary-color);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 1.4rem;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+  min-width: 140px;
+  transition:
+    background var(--transition-speed),
+    box-shadow var(--transition-speed),
+    transform var(--transition-speed);
+  will-change: transform;
+}
+
+.region-button:hover,
+.region-button:focus {
+  background: var(--button-hover-bg);
+  box-shadow: 0 12px 40px 0 #16c4fdb0;
+  transform: translateY(-4px) scale(1.06);
+  outline: none;
+}
+
+/* City Section Styles */
+.city-section {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 0.5rem; /* horizontal padding for better fit */
+  box-sizing: border-box;
+}
+
+/* City list grid */
+.city-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+/* City buttons */
+.city-button {
+  background: var(--card-bg);
+  border: 3px solid var(--card-border);
+  border-radius: 1.8rem;
+  padding: 1.15rem 1.2rem;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  user-select: none;
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed),
+    background-color var(--transition-speed);
+  outline-offset: 3px;
+  outline: none;
+  white-space: normal; /* changed for better text wrapping */
+  word-break: break-word; /* prevent overflow */
+  overflow-wrap: break-word;
+}
+
+/* Hover and focus states for cities */
+.city-button:hover,
+.city-button:focus-visible {
+  background-color: var(--button-hover-bg);
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: 0 16px 56px 0 #22d9ff88, var(--card-shadow);
+  outline: 3px solid var(--accent-color);
+}
+
+/* Back button container */
+.city-section-footer {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Back button style */
+.back-button {
+  background: var(--button-bg);
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.65rem 1.8rem;
+  border-radius: 1.2rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+  user-select: none;
+}
+
+.back-button:hover,
+.back-button:focus {
+  background: var(--button-hover-bg);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+.back-button svg {
+  font-size: 1.4rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .region-list {
+    gap: 1rem;
+    max-width: 100%;
+    padding: 0 0.3rem;
+  }
+  .region-button {
+    min-width: 110px;
+    font-size: 1.05rem;
+    padding: 0.8rem 1.8rem;
+  }
+  .city-section {
+    max-width: 100%;
+  }
+  .city-list {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.3rem;
+    padding: 0 0.3rem;
+  }
+  .city-button {
+    font-size: 1.08rem;
+    padding: 1rem;
+  }
+  .back-button {
+    font-size: 1rem;
+    padding: 0.55rem 1.5rem;
+  }
+}

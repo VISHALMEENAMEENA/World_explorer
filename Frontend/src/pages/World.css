@@ -1,0 +1,175 @@
+:root {
+  --bg-gradient: linear-gradient(115deg, #171925 0%, #223a60 60%, #243a54 100%);
+  --card-bg: rgba(24, 28, 47, 0.88);
+  --card-hover-bg: rgba(34, 217, 255, 0.15);
+  --card-border: #22d9ff;
+  --primary-color: #e0e9ff;
+  --accent-color: #ffd362;
+  --shadow-color: rgba(9, 31, 93, 0.8);
+  --font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --transition-speed: 0.3s;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  color: var(--primary-color);
+  min-height: 100vh;
+}
+
+.world-explorer {
+  max-width: 960px;
+  margin: 3rem auto 4rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.world-explorer h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px #ffdb70a8;
+  user-select: none;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  user-select: none;
+}
+
+/* Grid container for regions, countries, cities */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.6rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+/* Shared button style for region/country/city */
+.grid button {
+  background: var(--card-bg);
+  border: 2.5px solid transparent;
+  padding: 1.1rem 1.6rem;
+  border-radius: 1.3rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--shadow-color);
+  transition: 
+    background-color var(--transition-speed), 
+    border-color var(--transition-speed),
+    color var(--transition-speed),
+    transform var(--transition-speed) ease;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.grid button:hover,
+.grid button:focus {
+  background-color: var(--card-hover-bg);
+  border-color: var(--card-border);
+  color: var(--accent-color);
+  transform: translateY(-5px) scale(1.05);
+  outline: none;
+  box-shadow: 0 12px 26px var(--card-border);
+}
+
+.grid button:active {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 14px var(--card-border);
+}
+
+/* Back Button */
+.world-explorer > div > button:first-of-type {
+  background-color: transparent;
+  border: none;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  margin-bottom: 1.6rem;
+  padding: 0.2rem 0.5rem;
+  align-self: flex-start;
+  user-select: none;
+  transition: color var(--transition-speed);
+}
+
+.world-explorer > div > button:first-of-type:hover,
+.world-explorer > div > button:first-of-type:focus {
+  color: #fff;
+  outline: none;
+}
+
+/* City Details Card */
+.city-card {
+  background: var(--card-bg);
+  border: 2.5px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 1.8rem 2rem;
+  max-width: 600px;
+  box-shadow: 0 0 20px var(--shadow-color);
+  text-align: center;
+  user-select: none;
+}
+
+.city-card p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0.6rem 0;
+  color: var(--primary-color);
+}
+
+.city-card p strong {
+  color: var(--accent-color);
+}
+
+/* Loading text */
+.world-explorer p {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #96aad1;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .world-explorer {
+    margin: 2rem auto 3rem;
+    padding: 0 0.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .grid button {
+    font-size: 1rem;
+    padding: 0.9rem 1.1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .city-card {
+    max-width: 100%;
+    padding: 1.3rem 1.4rem;
+  }
+}
+

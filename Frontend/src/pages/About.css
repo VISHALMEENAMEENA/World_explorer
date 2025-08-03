@@ -1,0 +1,204 @@
+:root {
+  --primary: #253250;
+  --secondary: #23b3cd;
+  --accent: #ffd362;
+  --card-glass: rgba(27,33,54, .86);
+  --card-border: #22d9ff;
+  --card-shadow: 0 8px 32px rgba(25, 60, 142, 0.22);
+  --highlight: #22e9ff;
+  --soft-blue: #dbf6ff;
+  --font: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Root container: minimal styling for adaptability */
+.about-bg {
+  color: var(--primary);
+  font-family: var(--font);
+  /* No margin or padding here - controlled by parent */
+  /* No background here - keep transparent */
+}
+
+/* Header: only internal text styles and alignment */
+.about-header {
+  text-align: center;
+  /* Optional small padding if needed, or leave to parent */
+  margin-bottom: 1.8rem;
+}
+.about-header h1 {
+  color: var(--primary);
+  letter-spacing: 0.01em;
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+.highlight {
+  color: var(--highlight);
+  font-weight: 900;
+  text-shadow: 0 2px 12px #1dd6ffd0;
+}
+.tagline {
+  margin-top: 1em;
+  color: var(--secondary);
+  font-size: 1.27rem;
+  font-style: italic;
+}
+
+/* Hero section: flex with wrap, internal gap and padding only */
+.about-hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  /* Use relative padding inside to separate content */
+  padding: 1.6rem 0;
+}
+.about-hero-img {
+  width: 320px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 46px rgba(0,0,0,0.20);
+  border: 3px solid #20e7ff52;
+  background: #fff8ee33;
+  flex-shrink: 0;
+}
+.about-hero-section h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--soft-blue);
+  font-weight: 700;
+}
+.about-hero-section p {
+  font-size: 1.13rem;
+  color: #4e6a8e; /* softer for readability */
+  margin-bottom: .7em;
+  max-width: 480px;
+}
+
+/* Feature cards grid: responsive with gap and max width */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.9rem;
+  max-width: 1200px;
+  /* No margin auto: let parent center if needed */
+  padding: 0 0.75rem;
+}
+
+/* Individual feature cards */
+.feature-card {
+  background: var(--card-glass);
+  color: var(--primary);
+  border-radius: 1.5rem;
+  box-shadow: var(--card-shadow);
+  border-top: 6px solid var(--accent);
+  padding: 2rem 1.2rem 1.4rem 1.2rem;
+  transition:
+    transform 0.18s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.2s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  backdrop-filter: blur(3.5px);
+  outline-offset: 3px;
+  outline: none;
+}
+.feature-card:hover,
+.feature-card:focus-within {
+  transform: translateY(-6.5px) scale(1.025);
+  box-shadow: 0 14px 48px 0 #1cd1ff28, var(--card-shadow);
+  border-top-color: var(--highlight);
+  outline: 2px solid var(--secondary);
+  z-index: 10;
+}
+.feature-card h3 {
+  margin-top: 0.35em;
+  color: var(--accent);
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+.feature-icon {
+  display: block;
+  font-size: 2.05em;
+  margin-bottom: 0.22em;
+  color: var(--accent);
+  filter: drop-shadow(0 1px 0 #74ffe8b7);
+}
+.feature-card p,
+.feature-card ul {
+  color: #b8d5ee;
+  font-size: 1.01rem;
+  margin: 0.6em 0 0 0;
+  line-height: 1.45;
+}
+.feature-card ul {
+  margin-left: 1.2rem;
+  padding-left: 0.4rem;
+  list-style: disc inside;
+}
+
+/* Footer: small, simple, no margin/padding forcing */
+.about-footer {
+  text-align: center;
+  color: var(--soft-blue);
+  font-size: 1rem;
+  border-top: 1px solid #22e2ff25;
+  padding: 1rem 0 0.8rem 0;
+  letter-spacing: 0.02em;
+}
+.about-footer a {
+  color: var(--accent);
+  margin: 0 0.4em;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.about-footer a:hover,
+.about-footer a:focus {
+  color: var(--secondary);
+  outline: none;
+  text-decoration: underline;
+}
+.about-footer-social {
+  margin-top: 0.18em;
+  font-size: 1.36em;
+}
+.divider {
+  margin: 0 0.7rem;
+  color: #00e5de99;
+}
+
+/* Responsive basics */
+@media (max-width: 850px) {
+  .about-hero-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+    text-align: center;
+  }
+  .about-hero-img {
+    width: 90vw;
+    max-width: 95vw;
+    height: 160px;
+  }
+  .feature-grid {
+    padding: 0 0.3rem;
+  }
+  .feature-card {
+    padding: 1.4rem 1rem 1.2rem 1rem;
+  }
+}
+
+/* Animation */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.glass-card {
+  animation: fadein 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}

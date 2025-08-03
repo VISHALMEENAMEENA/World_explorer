@@ -1,0 +1,646 @@
+/* HomePage.css - Advanced Styling for the HomePage Component (V3) */
+
+/* --- 1. General Section Padding (Utility Class) --- */
+/* This ensures consistent vertical spacing between major sections on the homepage. */
+.section-padded {
+  padding: var(--spacing-xxl) 0; /* More generous vertical padding for sections */
+}
+
+/* --- 2. Immersive Hero Section Styling --- */
+.immersive-hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px; /* Tall hero section */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden; /* Hide overflowing background */
+  padding: var(--spacing-xl); /* Ensure content has padding */
+  box-sizing: border-box; /* Include padding in height */
+}
+
+.immersive-hero::before { /* Pseudo-element for background image/video */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media.istockphoto.com/id/1300970146/photo/impressive-summer-sunrise-on-eibsee-lake-with-zugspitze-mountain-range-sunny-outdoor-scene-in.jpg?s=612x612&w=0&k=20&c=qH7-_lkSaUJKWUI29rqR-eaXvZd_9-5_QEtjruqkFdk=') center center/cover no-repeat; /* Placeholder background image */
+  filter: brightness(0.7) grayscale(0.2); /* Slightly darken and desaturate background */
+  z-index: 1;
+  transform: scale(1.05); /* Slight zoom for a subtle parallax feel */
+  transition: filter var(--transition-speed-slow) var(--transition-ease); /* Smooth transition for dark mode */
+}
+.hero-section.immersive-hero {
+  background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh; /* Optional for full-screen effect */
+  color: white; /* Make sure text is visible */
+}
+
+/* Dark mode adjustment for hero background */
+@media (prefers-color-scheme: dark) {
+  .immersive-hero::before {
+    filter: brightness(0.4) grayscale(0.4); /* Darker and more desaturated in dark mode */
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%); /* Gradient overlay */
+  z-index: 2;
+  transition: background var(--transition-speed-normal) var(--transition-ease);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  animation: fadeInDown 1s var(--transition-ease) forwards; /* Entry animation */
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content h1 {
+  font-size: clamp(3rem, 6vw + 1rem, 5.5rem); /* Very large, fluid heading */
+  color: white;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.1;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Text shadow for readability */
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.hero-content p {
+  font-size: clamp(1.1rem, 1.8vw + 0.5rem, 1.6rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-lg) auto;
+  line-height: 1.5;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: clamp(1rem, 1.2vw + 0.2rem, 1.2rem);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  transition: all var(--transition-speed-fast) var(--transition-ease);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-button.primary-button {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border: 2px solid var(--color-accent-primary);
+}
+
+.hero-button.primary-button:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-button.secondary-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.hero-button.secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- 3. Content Block (Alternating Image/Text) --- */
+.content-block-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  align-items: center;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-md); /* Inner padding */
+}
+
+.content-block-inner:nth-child(even) { /* For alternating layout */
+  flex-direction: row-reverse;
+}
+
+.content-text, .content-image {
+  flex: 1; /* Allow items to grow */
+  min-width: 300px; /* Minimum width before wrapping */
+}
+
+.content-text {
+  padding-right: var(--spacing-lg); /* Space between text and image */
+}
+
+.content-block-inner:nth-child(even) .content-text {
+  padding-right: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.content-image img {
+  width: 100%;
+  height: 350px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-speed-normal) var(--transition-ease),
+              box-shadow var(--transition-speed-normal) var(--transition-ease);
+}
+
+.content-image img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.content-text .section-heading { /* Override general section-heading to left-align */
+  text-align: left;
+  margin-top: 0;
+  padding-bottom: var(--spacing-sm);
+}
+
+.content-text .section-heading::after { /* Align underline to left */
+  left: 0;
+  transform: translateX(0);
+}
+
+.content-text .section-description { /* Override general section-description to left-align */
+  text-align: left;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-speed-fast) var(--transition-ease),
+              transform var(--transition-speed-fast) var(--transition-ease);
+}
+
+.text-link:hover {
+  color: var(--color-accent-hover);
+  transform: translateX(5px);
+}
+
+/* --- 4. Why Choose Us - Feature Grid V2 --- */
+.why-choose-us .section-heading,
+.why-choose-us .section-description {
+  text-align: center;
+}
+
+.why-choose-us .section-heading::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.feature-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-md);
+}
+
+.feature-item {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: transform var(--transition-speed-normal) var(--transition-ease),
+              box-shadow var(--transition-speed-normal) var(--transition-ease),
+              background-color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.feature-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--color-accent-primary) 15%, transparent); /* Light tint of accent color */
+  color: var(--color-accent-primary);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  transition: background-color var(--transition-speed-normal) var(--transition-ease),
+              color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.feature-item h3 {
+  font-size: clamp(1.2rem, 2vw + 0.2rem, 1.75rem);
+  color: var(--color-text-dark);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.feature-item p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-medium);
+  line-height: 1.5;
+  margin-bottom: 0;
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+/* --- 5. Featured Destinations (Cards V2) --- */
+.featured-destinations .section-heading,
+.featured-destinations .section-description {
+  text-align: center;
+}
+
+.featured-destinations .section-heading::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.destination-carousel-container { /* Acts as a grid for now, could be a carousel */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-md);
+}
+
+.destination-card-v2 {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform var(--transition-speed-normal) var(--transition-ease),
+              box-shadow var(--transition-speed-normal) var(--transition-ease),
+              background-color var(--transition-speed-normal) var(--transition-ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.destination-card-v2:hover {
+  transform: translateY(-10px); /* More pronounced lift */
+  box-shadow: var(--shadow-lg);
+}
+
+.destination-card-v2 img {
+  width: 100%;
+  height: 250px; /* Taller images */
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-speed-slow) var(--transition-ease);
+}
+
+.destination-card-v2:hover img {
+  transform: scale(1.08); /* Stronger zoom on image hover */
+}
+
+.destination-card-v2 .card-info {
+  padding: var(--spacing-md);
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.destination-card-v2 h3 {
+  font-size: clamp(1.3rem, 2.2vw + 0.3rem, 1.8rem);
+  color: var(--color-text-dark);
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.destination-card-v2 p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-medium);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.destination-card-v2 .card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  margin-top: auto; /* Push link to bottom */
+  transition: color var(--transition-speed-fast) var(--transition-ease),
+              transform var(--transition-speed-fast) var(--transition-ease);
+}
+
+.destination-card-v2 .card-link:hover {
+  color: var(--color-accent-hover);
+  transform: translateX(5px);
+}
+
+.view-all-link {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.button-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: clamp(1rem, 1.2vw + 0.2rem, 1.2rem);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    transition: all var(--transition-speed-fast) var(--transition-ease);
+    background-color: transparent;
+    color: var(--color-accent-primary);
+    border: 2px solid var(--color-accent-primary);
+}
+
+.button-outline:hover {
+    background-color: var(--color-accent-primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- 6. Testimonials Section V2 --- */
+.testimonials-section {
+  background-color: color-mix(in srgb, var(--color-bg-primary) 80%, var(--color-bg-secondary)); /* Slightly different background */
+  padding: var(--spacing-xxl) 0;
+  transition: background-color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.testimonials-section .section-heading,
+.testimonials-section .section-description {
+  text-align: center;
+}
+
+.testimonials-section .section-heading::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.testimonial-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-md);
+}
+
+.testimonial-card-v2 {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  position: relative;
+  transition: transform var(--transition-speed-normal) var(--transition-ease),
+              box-shadow var(--transition-speed-normal) var(--transition-ease),
+              background-color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.testimonial-card-v2:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.quote-icon-v2 {
+  font-size: 3rem; /* Larger quote icon */
+  color: var(--color-accent-primary);
+  opacity: 0.1;
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.testimonial-text-v2 {
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw + 0.2rem, 1.25rem);
+  color: var(--color-text-medium);
+  margin-bottom: var(--spacing-md);
+  padding-top: var(--spacing-md); /* Space for the absolute quote icon */
+  line-height: 1.7;
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.testimonial-author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.author-name {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+  font-size: 1.1rem;
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.author-location {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  transition: color var(--transition-speed-normal) var(--transition-ease);
+}
+
+.testimonial-card-v2 .rating {
+  color: #FFD700; /* Gold color for stars */
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xxs);
+}
+
+/* --- 7. Final Call to Action Block --- */
+.final-cta {
+  margin-top: var(--spacing-xxl);
+  margin-bottom: var(--spacing-xxl); /* More space around the final CTA */
+}
+
+/* --- 8. Responsive Adjustments for HomePage specific elements --- */
+
+@media (max-width: 992px) {
+  .immersive-hero {
+    min-height: 500px;
+  }
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5vw + 0.8rem, 4.5rem);
+  }
+  .hero-content p {
+    font-size: clamp(1rem, 1.5vw + 0.4rem, 1.4rem);
+  }
+  .hero-buttons {
+    gap: var(--spacing-sm);
+  }
+  .hero-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: clamp(0.9rem, 1.1vw + 0.1rem, 1.1rem);
+  }
+
+  .content-block-inner {
+    flex-direction: column; /* Stack image and text */
+    text-align: center;
+    padding: var(--spacing-md);
+  }
+  .content-block-inner:nth-child(even) { /* Reset for stacking */
+    flex-direction: column;
+  }
+  .content-text, .content-image {
+    min-width: unset; /* Remove min-width for stacking */
+    width: 100%;
+  }
+  .content-text {
+    padding-right: 0;
+    margin-bottom: var(--spacing-lg); /* Space between text and image when stacked */
+  }
+  .content-block-inner:nth-child(even) .content-text {
+    padding-left: 0;
+  }
+  .content-text .section-heading,
+  .content-text .section-description {
+    text-align: center; /* Center text when stacked */
+  }
+  .content-text .section-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .content-image img {
+    height: 300px;
+  }
+
+  .feature-grid-v2,
+  .destination-carousel-container,
+  .testimonial-grid-v2 {
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm);
+  }
+  .destination-card-v2 img {
+    height: 220px;
+  }
+  .testimonial-card-v2 {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-padded {
+    padding: var(--spacing-xl) 0;
+  }
+  .immersive-hero {
+    min-height: 450px;
+  }
+  .hero-content h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+  }
+  .hero-content p {
+    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+  }
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons */
+  }
+  .hero-button {
+    width: 80%; /* Make buttons wider */
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .content-image img {
+    height: 250px;
+  }
+  .feature-grid-v2,
+  .destination-carousel-container,
+  .testimonial-grid-v2 {
+    grid-template-columns: 1fr; /* Stack all cards vertically */
+    gap: var(--spacing-md);
+    padding: var(--spacing-xs);
+  }
+  .destination-card-v2 img {
+    height: 200px;
+  }
+  .quote-icon-v2 {
+    font-size: 2rem;
+  }
+  .testimonial-text-v2 {
+    font-size: clamp(0.9rem, 2vw + 0.1rem, 1.1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padded {
+    padding: var(--spacing-lg) 0;
+  }
+  .immersive-hero {
+    min-height: 400px;
+  }
+  .hero-content h1 {
+    font-size: clamp(1.8rem, 7vw, 3.5rem);
+  }
+  .hero-content p {
+    font-size: clamp(0.85rem, 3vw, 1.2rem);
+  }
+  .hero-button {
+    font-size: 0.95rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+  .content-image img {
+    height: 200px;
+  }
+  .feature-item,
+  .destination-card-v2,
+  .testimonial-card-v2 {
+    padding: var(--spacing-md);
+  }
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  .destination-card-v2 img {
+    height: 180px;
+  }
+  .quote-icon-v2 {
+    font-size: 1.8rem;
+    top: var(--spacing-xs);
+    left: var(--spacing-xs);
+  }
+}

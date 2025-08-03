@@ -1,0 +1,58 @@
+/* index.css */
+
+html, body {
+  height: 100%; /* Ensure html and body take full viewport height */
+  margin: 0; /* Remove default browser margins */
+  padding: 0; /* Remove default browser padding */
+  box-sizing: border-box; /* Crucial for consistent box model */
+}
+
+#root {
+  /* Remove max-width, margin: 0 auto, and text-align: center from here. */
+  /* #root should typically be a full-width container for the app. */
+  height: 100%; /* Ensure #root also takes full height */
+  display: flex; /* Make #root a flex container */
+  flex-direction: column; /* To stack Header, Body, Footer vertically */
+  /* Remove padding and text-align here if you want content to manage its own alignment */
+  /* padding: 1.5rem; <-- Move this to a specific layout component if needed */
+  /* text-align: center; <-- Move this to specific components if needed */
+}
+
+/* Keep your logo, card, and other utility styles here if they are global */
+.logo {
+  height: 5rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  will-change: transform, filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 1.5em var(--color-primary));
+  transform: scale(1.05);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 1.5em #61dafb);
+}
+
+.card {
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.read-the-docs {
+  color: #999;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .logo {
+    height: 6rem;
+  }
+}
